@@ -5,11 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Feed extends Model
+class Item extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'feedurl',
-        'feed_title',
-    ];
+
+
+    public function children()
+    {
+        return $this->hasMany(Item::class, 'parent_id');
+    }
+
+
 }

@@ -16,7 +16,7 @@
             <div class="row">
             <div class="col-12">
                     <div class="common-heading text-center">
-                        <h4>Welcome {{Auth::user()->name}} you have {{$count}} feeds</h4>
+                        <h4>Welcome {{Auth::user()->name}}</h4>
                     </div>
                 </div>
 
@@ -28,18 +28,22 @@
              @endphp
              @if(!empty($feeds))
              @foreach($feeds as $fed)
+
+             @php
+             $idval=base64_encode($fed->id);
+             @endphp
              
                   <div class="eventsDivs col-md-4 col-sm-6 detail_div"  data-id="{{$i}}" tabindex="0">
                     <div class="eventsList">
                       <div class="listconts">
-                        <h5 class="titleSpace limits">{{$fed->title}}</h5>
+                        <h5 class="titleSpace limits"><a href="{{url('/')}}/getfeed/{{$idval}}">{{$fed->feed_title}}</a></h5>
                         <p class="descp">
-                        {{$fed->description}}
+                        
                         </p>
                         <div class="row">
                          
                           <div class="col-lg-12">
-                             <button id="button_{{$i}}" style="display:none;" class="addittineryBtn float-left" type="button"><a style="color: white;" target="_blank" href="{{$fed->links}}">View detail</a></button> 
+                             <button id="button_{{$i}}" style="display:none;" class="addittineryBtn float-left" type="button"><a style="color: white;" target="_blank" href="#">View detail</a></button> 
                           </div>
                         </div>
                       </div>
